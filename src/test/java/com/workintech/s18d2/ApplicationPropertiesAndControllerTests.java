@@ -117,6 +117,7 @@ class ApplicationPropertiesAndControllerTests {
                 .andExpect(jsonPath("$.name", is("Apple")));
     }
 
+
     @Test
     void testGetByIdSuccess() throws Exception {
         given(fruitService.getById(1L)).willReturn(sampleFruit);
