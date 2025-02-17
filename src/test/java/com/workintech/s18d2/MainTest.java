@@ -4,7 +4,7 @@ import com.workintech.s18d2.entity.Fruit;
 import com.workintech.s18d2.entity.FruitType;
 import com.workintech.s18d2.entity.Vegetable;
 import com.workintech.s18d2.exceptions.PlantException;
-import com.workintech.s18d2.repository.FruitRepository;
+import com.workintech.s18d2.dao.FruitRepository;
 import com.workintech.s18d2.services.FruitServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -121,7 +121,7 @@ class MainTest {
     @Test
     @DisplayName("FruitRepository::getByPriceDesc should return fruits in descending order of price")
     void testGetByPriceDesc() {
-        List<Fruit> fruits = fruitRepository.getByPriceDesc();
+        List<Fruit> fruits = fruitRepository.findByPriceDesc();
         assertEquals(2, fruits.size());
         assertTrue(fruits.get(0).getPrice() >= fruits.get(1).getPrice());
     }
@@ -129,7 +129,7 @@ class MainTest {
     @Test
     @DisplayName("FruitRepository::getByPriceAsc should return fruits in ascending order of price")
     void testGetByPriceAsc() {
-        List<Fruit> fruits = fruitRepository.getByPriceAsc();
+        List<Fruit> fruits = fruitRepository.findByPriceAsc();
         assertEquals(2, fruits.size());
         assertTrue(fruits.get(0).getPrice() <= fruits.get(1).getPrice());
     }
@@ -164,7 +164,7 @@ class MainTest {
     @Test
     @DisplayName("FruitService::getAll() should return all fruits")
     void testGetByPriceAscFruitService() {
-        when(mockFruitRepository.getByPriceAsc()).thenReturn(Arrays.asList(sampleFruitForFruitServiceTest));
+        when(mockFruitRepository.findByPriceAsc()).thenReturn(Arrays.asList(sampleFruitForFruitServiceTest));
 
         List<Fruit> fruits = fruitService.getByPriceAsc();
 
