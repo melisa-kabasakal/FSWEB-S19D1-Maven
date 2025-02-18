@@ -43,6 +43,8 @@ public class ResultAnalyzer2 implements TestWatcher, AfterAllCallback{
     @Override
     public void testFailed(ExtensionContext context, Throwable cause) {
         testResultsStatus.add(TestResultStatus.FAILED);
+
+
     }
 
     @Override
