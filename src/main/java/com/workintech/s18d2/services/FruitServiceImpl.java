@@ -15,7 +15,6 @@ import java.util.Optional;
 public class FruitServiceImpl implements FruitService {
     private FruitRepository fruitRepository;
 
-    @Autowired
     public FruitServiceImpl(FruitRepository fruitRepository) {
         this.fruitRepository = fruitRepository;
     }
@@ -33,7 +32,7 @@ public class FruitServiceImpl implements FruitService {
     @Override
     public Fruit getById(Long id) {
         Optional<Fruit> fruit = fruitRepository.findById(id);
-        return fruit.orElseThrow(() -> new PlantException("Fruit not found with id: " + id));  // Optional'ı doğrudan Fruit'e çeviriyoruz
+        return fruit.orElseThrow(() -> new PlantException("Fruit not found with id: " + id));
     }
 
     @Override

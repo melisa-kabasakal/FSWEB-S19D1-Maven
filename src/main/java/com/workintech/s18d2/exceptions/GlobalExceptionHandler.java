@@ -10,13 +10,17 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @Slf4j
 @ControllerAdvice
 public class GlobalExceptionHandler {
-    @ExceptionHandler
+
+    @ExceptionHandler(PlantException.class)
     public ResponseEntity<String> handlePlantException(PlantException ex) {
+        log.error("PlantException yakalandı: {}", ex.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
     }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> handleGlobalException(Exception ex) {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Beklenmeyen bir hata oluştu.");
+        log.error("Beklenmeyen bir hata yakalandı: ", ex); 
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("Beklenmeyen bir hata oluştu: " + ex.getMessage());
     }
 }

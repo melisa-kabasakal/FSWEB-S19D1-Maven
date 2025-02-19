@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.antlr.v4.runtime.misc.NotNull;
 
 @Entity
 @Data
@@ -23,6 +24,7 @@ public class Fruit {
     @Column(name = "fruit_price")
     private double price;
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
+    @Column(name = "fruit_type")
     private FruitType fruitType;
 }
